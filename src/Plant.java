@@ -13,7 +13,7 @@ public class Plant {
         this.notes = notes;
         this.planted = planted;
         this.watering = watering;
-        this.setFrequenceOfWatering(frequenceOfWatering);
+        this.frequenceOfWatering = frequenceOfWatering;
     }
     //konstruktor 2
     public Plant(String name,int frequenceOfWatering) throws PlantException {
@@ -54,7 +54,10 @@ public class Plant {
         return watering;
     }
 
-    public void setWatering(LocalDate watering) {
+    public void setWatering(LocalDate watering) throws PlantException {
+        if (watering.isBefore(planted)){
+            throw new PlantException("datum zálivky nesmí být před datumem zasazení!");
+        }
         this.watering = watering;
     }
 
@@ -72,12 +75,13 @@ public class Plant {
     //výpis info o jméně rostliny, poslední zálivce a doporučení další zálivky
     public String getWateringInfo(){
         LocalDate wateringNew;
+        wateringNew = watering.plusDays(frequenceOfWatering);
         String listing = "jméno květiny "+name+" datum poslední zálivky "+watering+
-                " doporučená další zálivka je "+doWateringNow();
+                " doporučená další zálivka je "+wateringNew;
         return listing;
     }
     //nastavení zálivky na dnešní den
-    public LocalDate doWateringNow(){
+    public LocalDate doWateringNow() throws PlantException {
         setWatering(LocalDate.now());
         return watering;
     }
