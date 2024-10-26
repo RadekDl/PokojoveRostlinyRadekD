@@ -8,19 +8,19 @@ public class Plant {
     private int frequenceOfWatering; //běžná frekvence zálivky ve dnech
 
     //konstruktor 1
-    public Plant(String name, String notes,LocalDate planted, LocalDate watering, int frequenceOfWatering){
+    public Plant(String name, String notes,LocalDate planted, LocalDate watering, int frequenceOfWatering) throws PlantException {
         this.name = name;
         this.notes = notes;
         this.planted = planted;
         this.watering = watering;
-        this.frequenceOfWatering = frequenceOfWatering;
+        this.setFrequenceOfWatering(frequenceOfWatering);
     }
     //konstruktor 2
-    public Plant(String name,int frequenceOfWatering){
+    public Plant(String name,int frequenceOfWatering) throws PlantException {
         this(name," ", LocalDate.now(),LocalDate.now(),frequenceOfWatering);
     }
     //konstruktor 3
-    public Plant(String name){
+    public Plant(String name) throws PlantException {
         this(name," ",LocalDate.now(),LocalDate.now(),7);
     }
     //metody
@@ -62,14 +62,18 @@ public class Plant {
         return frequenceOfWatering;
     }
 
-    public void setFrequenceOfWatering(int frequenceOfWatering) {
+    public void setFrequenceOfWatering(int frequenceOfWatering) throws PlantException {
+        if (frequenceOfWatering <= 0){
+           throw new PlantException("hodnota zálivky (frequenceOfWatering) nesmí být menší nebo rovno 0! ");
+        }
         this.frequenceOfWatering = frequenceOfWatering;
     }
     //úkol 2
-    //výpis info o jméně rostliny, poslední zálivce a doporučené další zálivce
+    //výpis info o jméně rostliny, poslední zálivce a doporučení další zálivky
     public String getWateringInfo(){
+        LocalDate wateringNew;
         String listing = "jméno květiny "+name+" datum poslední zálivky "+watering+
-                "doporučená další zálivka je "+watering + 7;
+                " doporučená další zálivka je "+doWateringNow();
         return listing;
     }
     //nastavení zálivky na dnešní den
