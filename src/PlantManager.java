@@ -18,11 +18,13 @@ public class PlantManager {
          List<Plant> copyOfList = new ArrayList<>(plantList);
          return copyOfList;
     }
-    public void plantForWatering(){                         // výpis rostlin k zalití
+    public void plantForWatering() throws PlantException {                         // výpis rostlin k zalití
         for (int i = 0; i< plantList.size(); i++){
-            if (LocalDate.now().isBefore(plantList.get(i).getWatering()));
+            if (LocalDate.now().isAfter(plantList.get(i).getWatering().plusDays(plantList.get(i).getFrequenceOfWatering())))
             System.out.println("rostlinu "+getPlant(i).getName()+" je potřeba zalít. ");
+
         }
+
     }
 
 }

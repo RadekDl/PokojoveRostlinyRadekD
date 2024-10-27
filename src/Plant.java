@@ -61,7 +61,10 @@ public class Plant {
         this.watering = watering;
     }
 
-    public int getFrequenceOfWatering() {
+    public int getFrequenceOfWatering() throws PlantException {
+        if (frequenceOfWatering <= 0){
+            throw new PlantException("hodnota zálivky (frequenceOfWatering) nesmí být menší nebo rovno 0! ");
+        }
         return frequenceOfWatering;
     }
 
