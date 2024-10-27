@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,11 @@ public class PlantManager {
          List<Plant> copyOfList = new ArrayList<>(plantList);
          return copyOfList;
     }
-
+    public void plantForWatering(){                         // výpis rostlin k zalití
+        for (int i = 0; i< plantList.size(); i++){
+            if (LocalDate.now().isBefore(plantList.get(i).getWatering()));
+            System.out.println("rostlinu "+getPlant(i).getName()+" je potřeba zalít. ");
+        }
+    }
 
 }
