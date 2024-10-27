@@ -12,6 +12,7 @@ public class Main {
             plantManager.addPlant(new Plant("tulipán"));
 
             plantManager.plantForWatering();
+            System.out.println(plantManager.getPlant(0).getName());
 
         } catch (Exception e) {
            System.err.println(e.getMessage());
