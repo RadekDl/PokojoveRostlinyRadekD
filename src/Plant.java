@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Plant {
+public class Plant implements Comparable<Plant>{
     private String name;
     private String notes;           //poznámky
     private LocalDate planted;      //datum vysazení
@@ -32,6 +32,7 @@ public class Plant {
 
     public void setName(String name) {
         this.name = name;
+       // return name;
     }
 
     public String getNotes() {
@@ -76,7 +77,7 @@ public class Plant {
     }
     //úkol 2
     //výpis info o jméně rostliny, poslední zálivce a doporučení další zálivky
-    public String getWateringInfo(){
+    public   String getWateringInfo(){
         LocalDate wateringNew;
         wateringNew = watering.plusDays(frequenceOfWatering);
         String listing = "jméno květiny "+name+" datum poslední zálivky "+watering+
@@ -87,5 +88,11 @@ public class Plant {
     public LocalDate doWateringNow() throws PlantException {
         setWatering(LocalDate.now());
         return watering;
+    }
+
+
+    @Override
+    public int compareTo(Plant otherPlant) {
+        return name.compareTo(otherPlant.name);
     }
 }

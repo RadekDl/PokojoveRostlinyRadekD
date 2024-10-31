@@ -1,4 +1,7 @@
+import java.io.PrintStream;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,15 +11,29 @@ public class Main {
             PlantManager plantManager = new PlantManager();
             plantManager.addPlant(new Plant("Růže", " ",
                     LocalDate.of(2024, 10, 19),
-                    LocalDate.of(2024, 10, 21), 7));
-            plantManager.addPlant(new Plant("tulipán"));
+                    LocalDate.of(2024, 10, 19), 7));
+            plantManager.addPlant(new Plant("Tulipán"));
+            plantManager.addPlant(new Plant("mrkev"));
 
+            Plant plant = new Plant("Modřín");
+            plant.getWateringInfo();
+            System.out.println(plant.getWateringInfo());
             plantManager.plantForWatering();
-            System.out.println(plantManager.getPlant(0).getName());
+
+
+
+            plantManager.copyOfPlantList();
+            System.out.println(plant.getWateringInfo());
+            plantManager.sort();
+
+
 
         } catch (Exception e) {
            System.err.println(e.getMessage());
+
+
         }
+
 
     }
 }
