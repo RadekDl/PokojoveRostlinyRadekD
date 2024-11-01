@@ -95,11 +95,11 @@ public class Plant {
     @Override
     public String toString() {
         return "Plant{" +
-                "name='" + name + '\'' +
-                ", notes='" + notes + '\'' +
-                ", planted=" + planted +
-                ", watering=" + watering +
-                ", frequenceOfWatering=" + frequenceOfWatering +
+                "jméno = '" + name + '\'' +
+                ", notes = '" + notes + '\'' +
+                ", zasazeno = " + planted +
+                ", zalito = " + watering +
+                ", frekvence zalívání po " + frequenceOfWatering +" dnech "+
                 '}';
     }
 }
