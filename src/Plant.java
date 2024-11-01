@@ -90,11 +90,9 @@ public class Plant {
         return watering;
     }
     //toSting kvůli řazení
-
-
     @Override
     public String toString() {
-        return "Plant{" +
+        return "květiny {" +
                 "jméno = '" + name + '\'' +
                 ", notes = '" + notes + '\'' +
                 ", zasazeno = " + planted +

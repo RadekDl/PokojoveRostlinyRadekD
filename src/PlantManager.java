@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -9,10 +8,6 @@ public class PlantManager {
 
     public List<Plant> getPlantList() {
         return plantList;
-    }
-
-    public void setPlantList(List<Plant> plantList) {
-        this.plantList = plantList;
     }
 
     //přidání nové rostliny
@@ -42,15 +37,16 @@ public class PlantManager {
         }
 
     }
-
-
     //seřazení rostlin výchozí dle jména a podle poslední zálivky
-
-    public void sorting(){
+    public void sorting() {
+        // Seřazení plantList
         plantList.sort(Comparator.comparing(Plant::getName).thenComparing(Plant::getWatering));
-        for(Plant plant : plantList) {
-            System.out.println("výpis rostlin ze seznamu " + plant);
+        // Výpis rostlin na obrazovku
+        for (Plant plant : plantList) {
+            System.out.println(plant);
         }
     }
+
+
 
 }

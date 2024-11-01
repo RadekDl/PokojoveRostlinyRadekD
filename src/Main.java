@@ -6,11 +6,9 @@ public class Main {
 
 
             PlantManager plantManager = new PlantManager();
-            plantManager.addPlant(new Plant("Růže", " ",
-                    LocalDate.of(2024, 10, 19),
-                    LocalDate.of(2024, 10, 19), 7));
+            plantManager.addPlant(new Plant("Růže", " ",LocalDate.of(2024, 10, 19),LocalDate.of(2024, 10, 19), 7));
             plantManager.addPlant(new Plant("Tulipán"));
-            plantManager.addPlant(new Plant("mrkev"));
+            plantManager.addPlant(new Plant("Mrkev"));
 
             Plant plant = new Plant("Modřín");
             plant.getWateringInfo();
@@ -31,7 +29,5 @@ public class Main {
 
 
         }
-
-
     }
 }
