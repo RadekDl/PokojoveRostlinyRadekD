@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Plant implements Comparable<Plant>{
+public class Plant {
     private String name;
     private String notes;           //poznámky
     private LocalDate planted;      //datum vysazení
@@ -89,10 +89,17 @@ public class Plant implements Comparable<Plant>{
         setWatering(LocalDate.now());
         return watering;
     }
+    //toSting kvůli řazení
 
 
     @Override
-    public int compareTo(Plant otherPlant) {
-        return name.compareTo(otherPlant.name);
+    public String toString() {
+        return "Plant{" +
+                "name='" + name + '\'' +
+                ", notes='" + notes + '\'' +
+                ", planted=" + planted +
+                ", watering=" + watering +
+                ", frequenceOfWatering=" + frequenceOfWatering +
+                '}';
     }
 }

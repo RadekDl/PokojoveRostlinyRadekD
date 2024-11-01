@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -41,17 +42,15 @@ public class PlantManager {
         }
 
     }
+
+
     //seřazení rostlin výchozí dle jména a podle poslední zálivky
 
-    public void sort(){
-        plantList.sort(null);
-//    //plantList.sort(Comparator.comparing(Plant::getName));
-//    for (int i = 0; i < plantList.size(); i++) {
-//        System.out.println("výpis po seřazení "+getPlantList().get(i).getName());
-
-    }
-    public void sort(Comparator<Plant>comparator){
-        plantList.sort(comparator);
+    public void sorting(){
+        plantList.sort(Comparator.comparing(Plant::getName).thenComparing(Plant::getWatering));
+        for(Plant plant : plantList) {
+            System.out.println("výpis rostlin ze seznamu " + plant);
+        }
     }
 
 }

@@ -1,7 +1,4 @@
-import java.io.PrintStream;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,9 +19,10 @@ public class Main {
 
 
 
-            plantManager.copyOfPlantList();
-            System.out.println(plant.getWateringInfo());
-            plantManager.sort();
+//            plantManager.copyOfPlantList();
+            System.out.println("výpis z manažeru "+plantManager.getPlantList().get(1).getWateringInfo()+"\n");
+
+            plantManager.sorting();
 
 
 
