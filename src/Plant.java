@@ -1,27 +1,32 @@
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class Plant {
     private String name;
     private String notes;           //poznámky
-    private LocalDate planted;      //datum vysazení
-    private LocalDate watering;     //datum poslední zálivky
     private int frequenceOfWatering; //běžná frekvence zálivky ve dnech
+    private LocalDate watering;     //datum poslední zálivky
+    private LocalDate planted;      //datum vysazení
+
+
 
     //konstruktor 1
-    public Plant(String name, String notes,LocalDate planted, LocalDate watering, int frequenceOfWatering) throws PlantException {
+    public Plant(String name, String notes,int frequenceOfWateringLocalDate,LocalDate watering,LocalDate planted ) throws PlantException {
         this.name = name;
         this.notes = notes;
-        this.planted = planted;
-        this.watering = watering;
         this.frequenceOfWatering = frequenceOfWatering;
+        this.watering = watering;
+        this.planted = planted;
+
+
     }
     //konstruktor 2
     public Plant(String name,int frequenceOfWatering) throws PlantException {
-        this(name," ", LocalDate.now(),LocalDate.now(),frequenceOfWatering);
+        this(name," ",frequenceOfWatering,LocalDate.now(),LocalDate.now());
     }
     //konstruktor 3
     public Plant(String name) throws PlantException {
-        this(name," ",LocalDate.now(),LocalDate.now(),7);
+        this(name," ",7,LocalDate.now(),LocalDate.now());
     }
     //metody
 
@@ -90,14 +95,36 @@ public class Plant {
         return watering;
     }
     //toSting kvůli řazení
+
     @Override
     public String toString() {
-        return "květiny {" +
+        return "Květiny {" +
                 "jméno = '" + name + '\'' +
-                ", notes = '" + notes + '\'' +
-                ", zasazeno = " + planted +
-                ", zalito = " + watering +
-                ", frekvence zalívání po " + frequenceOfWatering +" dnech "+
+                ", notes='" + notes + '\'' +
+                ", frekvence zalívání po =" + frequenceOfWatering +" dnech "+
+                ", zalito =" + watering +
+                ", zasazeno =" + planted +
                 '}';
     }
+    public static Plant parse(String line, int numberLine) throws PlantException {
+        int numberItems =5;
+        String[] parts = line.split("\t");
+        if(parts.length != numberItems){
+            throw new PlantException("špatný počet prvků v řádku "+numberLine+" má být "+numberItems+"\n ale jezde: "+line);
+        }
+        String name = parts[0].trim();
+        String notes = parts[1].trim();
+        try {
+            int frequenceOfWatering = Integer.parseInt(parts[2].trim());
+            LocalDate watering = LocalDate.parse(parts[3].trim());
+            LocalDate planted = LocalDate.parse(parts[4].trim());
+
+
+            return new Plant(name, notes, frequenceOfWatering, watering, planted);
+        } catch (DateTimeException | NumberFormatException e) {
+            throw new PlantException("soubor má chybný formát na řádkách "+ e);
+        }
+
+    }
 }
+
