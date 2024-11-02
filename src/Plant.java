@@ -28,9 +28,8 @@ public class Plant {
     public Plant(String name) throws PlantException {
         this(name," ",7,LocalDate.now(),LocalDate.now());
     }
+
     //metody
-
-
     public String getName() {
         return name;
     }
@@ -80,7 +79,7 @@ public class Plant {
         }
         this.frequenceOfWatering = frequenceOfWatering;
     }
-    //úkol 2
+
     //výpis info o jméně rostliny, poslední zálivce a doporučení další zálivky
     public   String getWateringInfo(){
         LocalDate wateringNew;
@@ -119,12 +118,11 @@ public class Plant {
             LocalDate watering = LocalDate.parse(parts[3].trim());
             LocalDate planted = LocalDate.parse(parts[4].trim());
 
-
             return new Plant(name, notes, frequenceOfWatering, watering, planted);
-        } catch (DateTimeException | NumberFormatException e) {
-            throw new PlantException("soubor má chybný formát na řádkách "+ e);
-        }
 
+        } catch (DateTimeException | NumberFormatException e) {
+            throw new PlantException("soubor má chybný formát v řádcích "+ e);
+        }
     }
 }
 
