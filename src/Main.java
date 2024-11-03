@@ -29,7 +29,8 @@ public class Main {
 //            plantManager.sortingWatering();
 //            plantManager.readingFile("kvetiny-spatne-datum.txt");
             System.out.println("\n");
-            plantManager.readingFile("kvetiny-spatne-frekvence.txt");
+//            plantManager.readingFile("kvetiny-spatne-frekvence.txt");
+            plantManager.readingFile("kvetiny.txt");
 
 
 
