@@ -109,7 +109,7 @@ public class Plant {
         int numberItems =5;
         String[] parts = line.split("\t");
         if(parts.length != numberItems){
-            throw new PlantException("špatný počet prvků v řádku "+numberLine+" má být "+numberItems+"\n ale jezde: "+line);
+            throw new PlantException("špatný počet prvků v řádku "+numberLine+" má být "+numberItems+"\n ale je zde: "+line);
         }
         String name = parts[0].trim();
         String notes = parts[1].trim();
@@ -121,8 +121,14 @@ public class Plant {
             return new Plant(name, notes, frequenceOfWatering, watering, planted);
 
         } catch (DateTimeException | NumberFormatException e) {
-            throw new PlantException("soubor má chybný formát v řádcích "+ e);
+            throw new PlantException("soubor má chybný formát v řádcích \n"+ e);
         }
+    }
+
+    public String toTransfer(String TAB) {
+
+       return name+ TAB + notes + TAB + frequenceOfWatering + TAB + watering + TAB + planted;
+
     }
 }
 

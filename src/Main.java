@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
+    private static final String TAB = "\t";
     public static void main(String[] args) {
+
         try {
 
 

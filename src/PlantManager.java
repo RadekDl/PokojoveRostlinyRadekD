@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PlantManager {
+
     private List<Plant> plantList = new ArrayList<>();
 
     public List<Plant> getPlantList() {
@@ -72,6 +71,20 @@ public class PlantManager {
         } catch (FileNotFoundException e) {
             throw new PlantException("Soubor "+nameFile+" nebyl nalezen! \n"+ e.getLocalizedMessage());
 
+        }
+    }
+    //vytvoření souboru
+    public void fileCreation(String nameFile,String TAB) throws PlantException {
+        //tab = "\t";
+        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(nameFile)))){
+            for (Plant plant: plantList){
+                writer.println(plant.toTransfer(TAB));
+
+
+            }
+
+        }catch (IOException e){
+            throw new PlantException("Do souboru nejde zapisovat "+ e.getLocalizedMessage());
         }
     }
 }
