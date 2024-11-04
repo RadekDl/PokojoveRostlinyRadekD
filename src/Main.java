@@ -9,10 +9,11 @@ public class Main {
 
             PlantManager plantManager = new PlantManager();
 
-//            plantManager.readingFile("kvetiny-spatne-datum.txt");
+//          plantManager.readingFile("kvetiny-spatne-datum.txt");
             System.out.println("\n");
-           plantManager.readingFile("kvetiny-spatne-frekvence.txt");
+//          plantManager.readingFile("kvetiny-spatne-frekvence.txt");
             plantManager.readingFile("kvetiny.txt");
+            plantManager.plantForWatering();
 
 
 

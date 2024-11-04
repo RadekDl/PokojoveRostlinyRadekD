@@ -65,7 +65,8 @@ public class PlantManager {
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 lineNumber++;
-                System.out.println(Plant.parse(line,lineNumber)); // výpis řádků souboru
+                System.out.println(Plant.parse(line,lineNumber));// výpis řádků souboru
+                plantList.add(Plant.parse(line,lineNumber)); // uložení do seznamu
             }
 
         } catch (FileNotFoundException e) {
