@@ -4,25 +4,25 @@ import java.time.LocalDate;
 public class Plant {
     private String name;
     private String notes;           //poznámky
-    private int frequenceOfWatering; //běžná frekvence zálivky ve dnech
+    private int frequencyOfWatering; //běžná frekvence zálivky ve dnech
     private LocalDate watering;     //datum poslední zálivky
     private LocalDate planted;      //datum vysazení
 
 
 
     //konstruktor 1
-    public Plant(String name, String notes,int frequenceOfWateringLocalDate,LocalDate watering,LocalDate planted ) throws PlantException {
+    public Plant(String name, String notes,int frequencyOfWatering,LocalDate watering,LocalDate planted ) throws PlantException {
         this.name = name;
         this.notes = notes;
-        this.frequenceOfWatering = frequenceOfWatering;
+        this.frequencyOfWatering = frequencyOfWatering;
         this.watering = watering;
         this.planted = planted;
 
 
     }
     //konstruktor 2
-    public Plant(String name,int frequenceOfWatering) throws PlantException {
-        this(name," ",frequenceOfWatering,LocalDate.now(),LocalDate.now());
+    public Plant(String name,int frequencyOfWatering) throws PlantException {
+        this(name," ",frequencyOfWatering,LocalDate.now(),LocalDate.now());
     }
     //konstruktor 3
     public Plant(String name) throws PlantException {
@@ -66,24 +66,24 @@ public class Plant {
         this.watering = watering;
     }
 
-    public int getFrequenceOfWatering() throws PlantException {
-        if (frequenceOfWatering <= 0){
+    public int getFrequencyOfWatering() throws PlantException {
+        if (frequencyOfWatering <= 0){
             throw new PlantException("hodnota zálivky (frequenceOfWatering) nesmí být menší nebo rovno 0! ");
         }
-        return frequenceOfWatering;
+        return frequencyOfWatering;
     }
 
-    public void setFrequenceOfWatering(int frequenceOfWatering) throws PlantException {
-        if (frequenceOfWatering <= 0){
+    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
+        if (frequencyOfWatering <= 0){
            throw new PlantException("hodnota zálivky (frequenceOfWatering) nesmí být menší nebo rovno 0! ");
         }
-        this.frequenceOfWatering = frequenceOfWatering;
+        this.frequencyOfWatering = frequencyOfWatering;
     }
 
     //výpis info o jméně rostliny, poslední zálivce a doporučení další zálivky
     public   String getWateringInfo(){
         LocalDate wateringNew;
-        wateringNew = watering.plusDays(frequenceOfWatering);
+        wateringNew = watering.plusDays(frequencyOfWatering);
         String listing = "jméno květiny "+name+" datum poslední zálivky "+watering+
                 " doporučená další zálivka je "+wateringNew;
         return listing;
@@ -100,7 +100,7 @@ public class Plant {
         return "Květiny {" +
                 "jméno = '" + name + '\'' +
                 ", notes='" + notes + '\'' +
-                ", frekvence zalívání po =" + frequenceOfWatering +" dnech "+
+                ", frekvence zalívání po =" + frequencyOfWatering +" dnech "+
                 ", zalito =" + watering +
                 ", zasazeno =" + planted +
                 '}';
@@ -114,11 +114,11 @@ public class Plant {
         String name = parts[0].trim();
         String notes = parts[1].trim();
         try {
-            int frequenceOfWatering = Integer.parseInt(parts[2].trim());
+            int frequencyOfWatering = Integer.parseInt(parts[2].trim());
             LocalDate watering = LocalDate.parse(parts[3].trim());
             LocalDate planted = LocalDate.parse(parts[4].trim());
 
-            return new Plant(name, notes, frequenceOfWatering, watering, planted);
+            return new Plant(name, notes, frequencyOfWatering, watering, planted);
 
         } catch (DateTimeException | NumberFormatException e) {
             throw new PlantException("soubor má chybný formát v řádcích \n"+ e);
@@ -127,7 +127,7 @@ public class Plant {
 
     public String toTransfer(String TAB) {
 
-       return name+ TAB + notes + TAB + frequenceOfWatering + TAB + watering + TAB + planted;
+       return name+ TAB + notes + TAB + frequencyOfWatering + TAB + watering + TAB + planted;
 
     }
 }

@@ -34,7 +34,7 @@ public class PlantManager {
     public void plantForWatering() throws PlantException {
         for (int i = 0; i< plantList.size(); i++){
             if (LocalDate.now().isAfter(plantList.get(i).getWatering().plusDays(plantList.get(i).
-                    getFrequenceOfWatering())))
+                    getFrequencyOfWatering())))
             System.out.println("rostlinu "+ getPlantIndex(i).getName()+" je potřeba zalít. ");
 
         }
