@@ -107,7 +107,7 @@ public class Plant {
     }
     public static Plant parse(String line, int numberLine) throws PlantException {
         int numberItems =5;
-        String[] parts = line.split("\t");
+        String[] parts = line.split(Main.TABULATOR);
         if(parts.length != numberItems){
             throw new PlantException("špatný počet prvků v řádku "+numberLine+" má být "+numberItems+"\n ale je zde: "+line);
         }

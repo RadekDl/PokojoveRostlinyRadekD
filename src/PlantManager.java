@@ -74,11 +74,11 @@ public class PlantManager {
         }
     }
     //vytvoření souboru
-    public void fileCreation(String nameFile,String TAB) throws PlantException {
+    public void fileCreation(String nameFile,String TABULATOR) throws PlantException {
         //tab = "\t";
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(nameFile)))){
             for (Plant plant: plantList){
-                writer.println(plant.toTransfer(TAB));
+                writer.println(plant.toTransfer(Main.TABULATOR));
 
 
             }
