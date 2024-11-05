@@ -41,7 +41,7 @@ public class PlantManager {
 
     }
     //seřazení rostlin výchozí dle jména a podle poslední zálivky
-    public void sortingNameAndWatering() {
+    public void sortingNameAndWatering() throws PlantException {
         // Seřazení plantList
         plantList.sort(Comparator.comparing(Plant::getName).thenComparing(Plant::getWatering));
         // Výpis rostlin na obrazovku
@@ -57,8 +57,8 @@ public class PlantManager {
             plantList.forEach(System.out::println);
         }
 
-    //načtení souboru
-    public void readingFile(String nameFile) throws PlantException {
+    //načtení souboru a uložení do seznamu
+    public void loadingAndSaving(String nameFile) throws PlantException {
         try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)))) {
 
             int lineNumber = 0;
@@ -86,6 +86,23 @@ public class PlantManager {
 
         }catch (IOException e){
             throw new PlantException("Do souboru nejde zapisovat "+ e.getLocalizedMessage());
+        }
+    }
+    //načtení souboru a uložení do seznamu
+    public void readingFile(String nameFile) throws PlantException {
+        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)))) {
+
+            int lineNumber = 0;
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                lineNumber++;
+                System.out.println(Plant.parse(line,lineNumber));// výpis řádků souboru
+                //plantList.add(Plant.parse(line,lineNumber)); // uložení do seznamu
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new PlantException("Soubor "+nameFile+" nebyl nalezen! \n"+ e.getLocalizedMessage());
+
         }
     }
 }

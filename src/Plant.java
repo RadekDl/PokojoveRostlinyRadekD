@@ -99,8 +99,7 @@ public class Plant {
     public String toString() {
         return "Květiny {" +
                 "jméno = '" + name + '\'' +
-                ", notes='" + notes + '\'' +
-                ", frekvence zalívání po =" + frequencyOfWatering +" dnech "+
+                ", notes='" + notes + '\'' +     ", frekvence zalívání po =" + frequencyOfWatering +" dnech "+
                 ", zalito =" + watering +
                 ", zasazeno =" + planted +
                 '}';
