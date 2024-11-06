@@ -81,7 +81,6 @@ public class PlantManager {
             for (Plant plant: plantList){
                 writer.println(plant.toTransfer(Main.TABULATOR));
 
-
             }
 
         }catch (IOException e){
