@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Collection;
 
 public class Main {
     public static final String TABULATOR = "\t";
@@ -18,9 +19,9 @@ public class Main {
             plantManager.loadingAndSaving("kvetiny.txt");
             System.out.println("\n");
             //úprava frekvence zálivky dle souboru kvetiny.txt
-            plantManager.getPlantIndex(0).setFrequencyOfWatering(3);
-            plantManager.getPlantIndex(1).setFrequencyOfWatering(4);
-            plantManager.getPlantIndex(2).setFrequencyOfWatering(365);
+            plantManager.getPlant(0).setFrequencyOfWatering(3);
+            plantManager.getPlant(1).setFrequencyOfWatering(4);
+            plantManager.getPlant(2).setFrequencyOfWatering(365);
 
             //výpis o zálivce
             System.out.println("výpis o zálivce \n");
@@ -38,6 +39,8 @@ public class Main {
                         14, LocalDate.now(),LocalDate.now()));
             }
             System.out.println("počet květin v seznamu po přidání nových květin je: "+ plantManager.getPlantList().size()+"\n");
+             plantManager.listing();
+
 
             //Smazání rostliny na třetí pozici
             plantManager.getPlantList().remove(2);
@@ -54,10 +57,15 @@ public class Main {
             plantManager.fileCreation("Kvetiny1.txt",TABULATOR);
             System.out.println("\n seřazení podle jména \n");
             plantManager.sortingNameAndWatering();
+            plantManager.listing();
             System.out.println("\n seřazení podle zálivky \n");
             plantManager.sortingWatering();
+            plantManager.listing();
             System.out.println("\n znovunačtení Kvetiny1.txt \n");
             plantManager.readingFile("Kvetiny1.txt");
+            plantManager.getPlantList().sort(Plant::compareTo);
+            System.out.println("\nvýpis compareTo\n");
+            plantManager.getPlantList().forEach(System.out::println);
 
 
         } catch (Exception e) {

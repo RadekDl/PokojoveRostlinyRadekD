@@ -1,7 +1,7 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
-public class Plant {
+public class Plant implements Comparable<Plant>{
     private String name;
     private String notes;           //poznámky
     private int frequencyOfWatering; //běžná frekvence zálivky ve dnech
@@ -10,33 +10,35 @@ public class Plant {
 
 
 
-    //konstruktor 1
+
     public Plant(String name, String notes,int frequencyOfWatering,LocalDate watering,LocalDate planted ) throws PlantException {
+        if(watering.isBefore(planted)){
+            throw new PlantException("datum zálivky nesmí být před datumem zasazení!");
+        }
         this.name = name;
         this.notes = notes;
-        this.frequencyOfWatering = frequencyOfWatering;
+        this.setFrequencyOfWatering(frequencyOfWatering);
         this.watering = watering;
         this.planted = planted;
 
 
     }
-    //konstruktor 2
+
     public Plant(String name,int frequencyOfWatering) throws PlantException {
         this(name," ",frequencyOfWatering,LocalDate.now(),LocalDate.now());
     }
-    //konstruktor 3
+
     public Plant(String name) throws PlantException {
         this(name," ",7,LocalDate.now(),LocalDate.now());
     }
 
-    //metody
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-       // return name;
     }
 
     public String getNotes() {
@@ -128,6 +130,11 @@ public class Plant {
 
        return name+ TAB + notes + TAB + frequencyOfWatering + TAB + watering + TAB + planted;
 
+    }
+
+    @Override
+    public int compareTo(Plant o) {
+        return name.compareTo(o.name);
     }
 }
 

@@ -18,7 +18,7 @@ public class PlantManager {
         plantList.add(plant);
     }
     //získání květiny dle indexu
-    public  Plant getPlantIndex(int index){
+    public  Plant getPlant(int index){
         return  plantList.get(index);
     }
     //smazání rostliny dle indexu
@@ -34,8 +34,8 @@ public class PlantManager {
     public void plantForWatering() throws PlantException {
         for (int i = 0; i< plantList.size(); i++){
             if (LocalDate.now().isAfter(plantList.get(i).getWatering().plusDays(plantList.get(i).
-                    getFrequencyOfWatering())))
-            System.out.println("rostlinu "+ getPlantIndex(i).getName()+" je potřeba zalít. ");
+                    getFrequencyOfWatering())));
+            System.out.println("rostlinu "+ getPlant(i).getName()+" je potřeba zalít. ");
 
         }
 
@@ -44,18 +44,18 @@ public class PlantManager {
     public void sortingNameAndWatering() throws PlantException {
         // Seřazení plantList
         plantList.sort(Comparator.comparing(Plant::getName).thenComparing(Plant::getWatering));
-        // Výpis rostlin na obrazovku
-        for (Plant plant : plantList) {
-            System.out.println(plant);
-        }
-        System.out.println("\n");
     }
+
     //seřazení rostlin podle poslední zálivky
     public void sortingWatering(){
         plantList.sort(Comparator.comparing(Plant::getWatering));
-        //výpis seřazených rostlin na obrazovku
-            plantList.forEach(System.out::println);
+    }
+    //výpis rostlin ze seznamu
+    public void listing() {
+        for (Plant plant : plantList) {
+            System.out.println(plant);
         }
+    }
 
     //načtení souboru a uložení do seznamu
     public void loadingAndSaving(String nameFile) throws PlantException {
@@ -87,7 +87,7 @@ public class PlantManager {
             throw new PlantException("Do souboru nejde zapisovat "+ e.getLocalizedMessage());
         }
     }
-    //načtení souboru a uložení do seznamu
+    //načtení souboru
     public void readingFile(String nameFile) throws PlantException {
         try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)))) {
 
@@ -96,7 +96,6 @@ public class PlantManager {
                 String line = scanner.nextLine();
                 lineNumber++;
                 System.out.println(Plant.parse(line,lineNumber));// výpis řádků souboru
-                //plantList.add(Plant.parse(line,lineNumber)); // uložení do seznamu
             }
 
         } catch (FileNotFoundException e) {
