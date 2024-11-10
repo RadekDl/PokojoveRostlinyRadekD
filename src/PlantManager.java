@@ -79,7 +79,7 @@ public class PlantManager {
         //tab = "\t";
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(nameFile)))){
             for (Plant plant: plantList){
-                writer.println(plant.toTransfer(Main.TABULATOR));
+                writer.println(plant.toTransfer(TABULATOR));
 
             }
 

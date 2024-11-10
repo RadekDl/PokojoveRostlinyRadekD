@@ -126,9 +126,9 @@ public class Plant implements Comparable<Plant>{
         }
     }
 
-    public String toTransfer(String TAB) {
+    public String toTransfer(String Tabulator) {
 
-       return name+ TAB + notes + TAB + frequencyOfWatering + TAB + watering + TAB + planted;
+       return name+ Tabulator + notes + Tabulator + frequencyOfWatering + Tabulator + watering + Tabulator + planted;
 
     }
 
