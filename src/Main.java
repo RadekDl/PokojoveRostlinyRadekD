@@ -8,8 +8,6 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-
-
             PlantManager plantManager = new PlantManager();
 
 //          plantManager.readingFile("kvetiny-spatne-datum.txt");
@@ -28,8 +26,7 @@ public class Main {
             plantManager.plantForWatering();
             System.out.println("\n");
 
-
-//            //přidání nové květiny
+            //přidání nové květiny
             plantManager.getPlantList().add(new Plant("Kopretina","bez poznámky",5,LocalDate.now(),LocalDate.now()));
 
             System.out.println("počet květin v seznamu je: "+ plantManager.getPlantList().size()+"\n");
