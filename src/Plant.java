@@ -12,9 +12,9 @@ public class Plant implements Comparable<Plant>{
 
 
     public Plant(String name, String notes,int frequencyOfWatering,LocalDate watering,LocalDate planted ) throws PlantException {
-        if(watering.isBefore(planted)){
-            throw new PlantException("datum zálivky nesmí být před datumem zasazení!");
-        }
+//        if(watering.isBefore(planted)){
+//            throw new PlantException("datum zálivky nesmí být před datumem zasazení!");
+//        }
         this.name = name;
         this.notes = notes;
         this.setFrequencyOfWatering(frequencyOfWatering);
